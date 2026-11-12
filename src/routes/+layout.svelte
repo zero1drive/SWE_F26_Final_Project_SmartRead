@@ -2,6 +2,9 @@
   import '@fontsource/literata/400.css';
   import '@fontsource/literata/400-italic.css';
   import '@fontsource/literata/600.css';
+  import '@fontsource/im-fell-english/400.css';
+  import '@fontsource/im-fell-english/400-italic.css';
+  import '@fontsource/im-fell-english-sc/400.css';
   import '@fontsource/gaegu/300.css';
   import '@fontsource/gaegu/400.css';
   import '../app.css';

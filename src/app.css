@@ -14,7 +14,9 @@
   --ok: #2f5a3a;
   --bad: #8a2323;
 
-  --serif: 'Literata', Georgia, 'Times New Roman', serif;
+  --serif: 'Literata', Georgia, 'Times New Roman', serif; /* reading text */
+  --display: 'IM Fell English', Georgia, serif; /* headings: 1670s Oxford type, inky and uneven */
+  --display-sc: 'IM Fell English SC', Georgia, serif; /* small caps for shelf labels */
   --hand: 'Gaegu', 'Comic Sans MS', cursive;
 
   --gutter: clamp(16px, 4vw, 48px);
@@ -39,14 +41,14 @@ body {
 }
 
 h1, h2, h3 {
-  font-weight: 600;
-  line-height: 1.2;
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: 1.15;
   margin: 0 0 0.5em;
-  letter-spacing: -0.01em;
 }
-h1 { font-size: 2rem; }
-h2 { font-size: 1.4rem; }
-h3 { font-size: 1.1rem; }
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.65rem; }
+h3 { font-size: 1.25rem; }
 
 a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
 a:hover { color: var(--accent-soft); }

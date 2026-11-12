@@ -7,7 +7,7 @@
 
 <section class="intro">
   <div class="words">
-    <h1>Good evening{data.user ? `, ${data.user.name.split(' ')[0]}` : ''}.</h1>
+    <h1>{data.greeting},<br /><em>{data.user ? data.user.name.split(' ')[0] : 'reader'}.</em></h1>
     <p class="lede">
       Old books, a warm lamp, and a shopkeeper who remembers what you liked last time.
       Browse the shelves, ask the clerk a question, or keep a journal of what you're reading.
@@ -25,10 +25,13 @@
 </section>
 
 <section class="ruled">
-  <h2>On the shelves</h2>
+  <h2><span class="fleuron" aria-hidden="true">❧</span> On the shelves</h2>
   {#each data.shelves as s}
     <div class="section">
-      <h3><a href="/catalog?category={encodeURIComponent(s.category)}">{s.category}</a></h3>
+      <h3 class="plaque">
+        <a href="/catalog?category={encodeURIComponent(s.category)}">{s.category}</a>
+        <span class="count">{s.books.length}</span>
+      </h3>
       <Shelf books={s.books} />
     </div>
   {/each}
@@ -41,7 +44,9 @@
     gap: 2rem 3rem;
     align-items: end;
   }
-  h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 400; font-style: italic; }
+  h1 { font-size: clamp(2.6rem, 5.5vw, 3.8rem); line-height: 1.02; margin-bottom: 0.4em; }
+  h1 em { color: var(--accent); font-style: italic; padding-left: 0.6em; }
+  .fleuron { color: var(--brass); font-size: 1.3em; margin-right: 0.15em; }
   .lede { max-width: 42ch; font-size: 1.1rem; color: var(--ink-soft); }
   .note {
     font-size: 1.6rem;
@@ -54,8 +59,23 @@
   }
   .top-titles { margin: -1.2rem 0 0; padding-left: 1.4rem; }
   .top-titles li { margin: 0.1rem 0; }
-  .section h3 { font-weight: 400; font-style: italic; margin-bottom: 0.6rem; }
-  .section h3 a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--brass); }
+  /* a brass card-holder label, like the ones screwed to library shelves */
+  .plaque {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin: 0 0 0.7rem 18px;
+    padding: 0.15rem 0.8rem 0.2rem;
+    font-family: var(--display-sc);
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+    background: var(--card);
+    border: 1px solid var(--brass);
+    box-shadow: inset 0 0 0 2px var(--card), inset 0 0 0 3px rgba(176, 138, 62, 0.45);
+  }
+  .plaque a { color: var(--ink); text-decoration: none; }
+  .plaque a:hover { color: var(--accent); }
+  .plaque .count { font-family: var(--serif); font-size: 0.75rem; color: var(--ink-soft); letter-spacing: 0; }
   @media (max-width: 760px) {
     .intro { grid-template-columns: 1fr; }
   }
