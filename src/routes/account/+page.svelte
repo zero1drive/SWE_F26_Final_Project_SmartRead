@@ -1,5 +1,6 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
+  import FaceEnrol from '$lib/components/FaceEnrol.svelte';
   let { data, form } = $props();
   const me = $derived(data.me);
   const kind = { deposit: 'Deposit', purchase: 'Purchase', fine: 'Fine' } as const;
@@ -64,6 +65,8 @@
     </table>
   {/if}
 </section>
+
+<section class="ruled" id="face"><FaceEnrol frames={data.faceFrames} /></section>
 
 <style>
   .top { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 3rem; }

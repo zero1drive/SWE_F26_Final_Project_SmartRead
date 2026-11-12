@@ -1,7 +1,44 @@
 <script lang="ts">
-  import { enhance } from '$app/forms';
+  import { tick } from 'svelte';
+  import { enhance, deserialize } from '$app/forms';
+  import { goto, invalidateAll } from '$app/navigation';
+  import { grabFrame, sleep, startCamera, stopCamera } from '$lib/camera';
   let { data, form } = $props();
   const roleName = { SU: 'manager', RC: 'member', VC: 'VIP' } as const;
+
+  // face login: open the camera, take one frame, ask the server who it is
+  let video: HTMLVideoElement | undefined = $state();
+  let faceState = $state<'idle' | 'looking' | 'checking'>('idle');
+  let faceMsg = $state<{ text: string; bad?: boolean } | null>(null);
+
+  async function faceLogin() {
+    faceMsg = null;
+    faceState = 'looking';
+    await tick();
+    let stream: MediaStream | null = null;
+    try {
+      stream = await startCamera(video!);
+      await sleep(1200); // let the camera adjust its exposure
+      const image = grabFrame(video!);
+      faceState = 'checking';
+      const body = new FormData();
+      body.append('image', image);
+      const res = await fetch('?/face', { method: 'POST', body, headers: { 'x-sveltekit-action': 'true' } });
+      const r = deserialize(await res.text());
+      if (r.type === 'success') {
+        faceMsg = { text: String(r.data?.faceOk) };
+        await invalidateAll();
+        await goto('/');
+      } else {
+        faceMsg = { text: r.type === 'failure' ? String(r.data?.faceError) : 'Face login failed.', bad: true };
+      }
+    } catch (e) {
+      faceMsg = { text: (e as Error).message, bad: true };
+    } finally {
+      stopCamera(stream);
+      faceState = 'idle';
+    }
+  }
 </script>
 
 <svelte:head><title>Log in · smartread</title></svelte:head>
@@ -16,7 +53,18 @@
       <button class="primary">Log in</button>
     </form>
 
-    <!-- FACE_LOGIN -->
+    <div class="face ruled">
+      <p class="hand or">or</p>
+      {#if faceMsg}<p class="notice" class:bad={faceMsg.bad}>{faceMsg.text}</p>{/if}
+      {#if faceState !== 'idle'}
+        <!-- svelte-ignore a11y_media_has_caption -->
+        <video bind:this={video} playsinline muted></video>
+        <p class="hand looking">{faceState === 'looking' ? 'look at the camera…' : 'checking…'}</p>
+      {:else}
+        <button onclick={faceLogin}>Log in with my face</button>
+        <p class="small muted">Enrol your face first from your account page.</p>
+      {/if}
+    </div>
 
     {#if data.demoAccounts.length}
       <div class="ruled">
@@ -55,6 +103,9 @@
   .stack input { width: 100%; margin-top: 0.2rem; }
   .stack button { justify-self: start; }
   .register { border-left: 1px solid var(--rule); padding-left: 3rem; }
+  .or { font-size: 1.4rem; color: var(--ink-soft); margin: 0 0 0.4rem; }
+  .face video { width: 240px; aspect-ratio: 4/3; background: var(--ink); display: block; transform: scaleX(-1); }
+  .looking { font-size: 1.3rem; color: var(--accent); }
   .demo-label { font-size: 1.4rem; color: var(--accent); margin: 0 0 0.5rem; }
   .demo { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .demo form { margin: 0; }

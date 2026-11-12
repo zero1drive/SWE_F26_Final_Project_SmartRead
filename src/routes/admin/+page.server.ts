@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { error, fail } from '@sveltejs/kit';
 import { read, write, type Book } from '$lib/server/db';
-import { canReopen, money, validateDeposit } from '$lib/server/rules';
+import { FACE_FRAMES, canReopen, money, validateDeposit } from '$lib/server/rules';
 import { financeReport, orderLists } from '$lib/server/reports';
 import { makeCover } from '$lib/server/cover';
 
@@ -19,7 +19,8 @@ export const load = ({ locals }) => {
     taboo: read('taboo'),
     lists: orderLists(),
     finance: financeReport(),
-    categories: [...new Set(read('books').map((b) => b.category))].sort()
+    categories: [...new Set(read('books').map((b) => b.category))].sort(),
+    faceFrames: FACE_FRAMES
   };
 };
 

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
+  import FaceEnrol from '$lib/components/FaceEnrol.svelte';
   let { data, form } = $props();
   const v = $derived(form && 'values' in form ? form.values : null);
   const f = $derived(data.finance);
@@ -136,6 +137,8 @@
     <button class="primary">Add to catalog</button>
   </form>
 </section>
+
+<section class="ruled" id="face"><FaceEnrol frames={data.faceFrames} /></section>
 
 <style>
   .jump { margin-top: -0.5rem; }

@@ -149,3 +149,6 @@ export function purchaseHistory(
 
 /** $12.50, or -$0.50 for negative balances. */
 export const usd = (n: number) => (n < 0 ? '-$' : '$') + Math.abs(n).toFixed(2);
+
+export const FACE_MIN_CONFIDENCE = 0.8; // face login accepts the top class only above this confidence
+export const FACE_FRAMES = 20; // webcam frames captured when enrolling

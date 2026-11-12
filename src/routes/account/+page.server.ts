@@ -1,7 +1,7 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { read, write } from '$lib/server/db';
 import {
-  PROMOTE_AFTER_PURCHASES, PROMOTE_AFTER_SPENT, VC_DISCOUNT, WARNINGS_LIMIT, money, purchaseHistory, validateDeposit
+  FACE_FRAMES, PROMOTE_AFTER_PURCHASES, PROMOTE_AFTER_SPENT, VC_DISCOUNT, WARNINGS_LIMIT, money, purchaseHistory, validateDeposit
 } from '$lib/server/rules';
 
 export const load = ({ locals, url }) => {
@@ -32,7 +32,8 @@ export const load = ({ locals, url }) => {
       discount: VC_DISCOUNT * 100,
       warningsLimit: WARNINGS_LIMIT
     },
-    welcome: url.searchParams.has('welcome')
+    welcome: url.searchParams.has('welcome'),
+    faceFrames: FACE_FRAMES
   };
 };
 
