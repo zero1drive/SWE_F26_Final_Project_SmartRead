@@ -56,6 +56,7 @@
       {:else if !data.user}
         <p class="small muted"><a href="/login">Log in</a> to buy this book.</p>
       {/if}
+      <p class="small"><a href="/shelf?add={b.id}">Put it on my shelf</a> <span class="muted">to journal about it</span></p>
     </div>
   </div>
 </article>
