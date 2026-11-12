@@ -31,3 +31,9 @@ data/faces/
 Thumbs.db
 .vscode/
 .idea/
+
+# embedding cache, rebuilt automatically
+data/embeddings.json
+
+# login sessions change on every login
+data/sessions.json

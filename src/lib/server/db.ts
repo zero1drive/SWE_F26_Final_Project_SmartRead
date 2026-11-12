@@ -72,6 +72,7 @@ export interface Files {
   taboo: string[];
   shelves: Record<string, Shelf>;
   sessions: Record<string, string>; // token -> username
+  embeddings: Record<string, { hash: string; model: string; vector: number[] }>; // cache, safe to delete
 }
 
 const EMPTY: Files = {
@@ -82,7 +83,8 @@ const EMPTY: Files = {
   reviews: [],
   taboo: [],
   shelves: {},
-  sessions: {}
+  sessions: {},
+  embeddings: {}
 };
 
 export function read<K extends keyof Files>(name: K): Files[K] {
