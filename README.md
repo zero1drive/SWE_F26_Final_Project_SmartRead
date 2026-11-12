@@ -22,15 +22,18 @@ Open http://localhost:5173. (On Windows PowerShell, use `copy .env.example .env`
 
 The rest of the store works without this; the login page just says the face service is off.
 
+Windows (PowerShell):
+
 ```bash
 cd face
-py -3.12 -m venv .venv          # macOS/Linux: python3 -m venv .venv
-.venv\Scripts\activate          # macOS/Linux: source .venv/bin/activate
-pip install -r requirements.txt
-python -m uvicorn server:app --port 8001
+py -3.12 -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python -m uvicorn server:app --port 8001
 ```
 
-If `python` opens the Microsoft Store, run `winget install Python.Python.3.12` and use the `py` launcher as above. The first `pip install` downloads PyTorch and takes a few minutes. Enrolment trains for 8 epochs, which took about 10 seconds on our test laptop (CPU only). The first enrolment also downloads the tiny `yolo11n-cls.pt` checkpoint. Face photos are saved in `data/faces/`, which is git-ignored so they never reach GitHub.
+macOS/Linux: the same, with `python3 -m venv .venv` and `.venv/bin/python` instead.
+
+These call the virtual environment's Python directly, so there is no `activate` step: that avoids PowerShell's "running scripts is disabled" error and doesn't need `python` on your PATH. After the first time, only the `cd face` and last line are needed to start the service. If `py` isn't found, run `winget install Python.Python.3.12` and open a new PowerShell window. The first `pip install` downloads PyTorch and takes a few minutes. Enrolment trains for 8 epochs, which took about 10 seconds on our test laptop (CPU only). The first enrolment also downloads the tiny `yolo11n-cls.pt` checkpoint. Face photos are saved in `data/faces/`, which is git-ignored so they never reach GitHub.
 
 ## Where things live
 
