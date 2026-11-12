@@ -135,3 +135,15 @@ export function validRating(raw: unknown): number | null {
   const n = Number(raw);
   return Number.isInteger(n) && n >= 1 && n <= 5 ? n : null;
 }
+
+/** Purchase count and total spent, from the ledger. */
+export function purchaseHistory(
+  ledger: { username: string; type: string; amount: number }[],
+  username: string
+): { count: number; spent: number } {
+  const mine = ledger.filter((e) => e.username === username && e.type === 'purchase');
+  return { count: mine.length, spent: money(mine.reduce((s, e) => s + e.amount, 0)) };
+}
+
+/** $12.50, or -$0.50 for negative balances. */
+export const usd = (n: number) => (n < 0 ? '-$' : '$') + Math.abs(n).toFixed(2);
