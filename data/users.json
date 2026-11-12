@@ -1,0 +1,56 @@
+[
+  {
+    "username": "admin",
+    "name": "Store Manager",
+    "passwordHash": "1b70a5fe32a69bd0b70ed6a982f43859:93d4e4433e7fd5c399e51dcc780581b5007656ec07559686ce79bb513c178fbf",
+    "role": "SU",
+    "balance": 0,
+    "warnings": 0,
+    "suspended": false
+  },
+  {
+    "username": "alice",
+    "name": "Alice Moreno",
+    "passwordHash": "389360030c71bd2219f0c59ef21bb6c8:85b0593852b511240f99d958fc2a3ec437af3ae4e91ee7977eaa4f0c51d58937",
+    "role": "RC",
+    "balance": 66,
+    "warnings": 0,
+    "suspended": false
+  },
+  {
+    "username": "victor",
+    "name": "Victor Chen",
+    "passwordHash": "5f0d08df0cd3cc8e1e0569411996990b:0d5ee5ba52c9fcb60a53ff7c77691c0bc5d656c8ccabcfc19c75e82fca686453",
+    "role": "VC",
+    "balance": 94.2,
+    "warnings": 0,
+    "suspended": false
+  },
+  {
+    "username": "wendy",
+    "name": "Wendy Park",
+    "passwordHash": "f53f9f23d06c61bed75e9b55decc51b2:9d65932b7fed461c68e77335def7b860175c996b99d1913ed3eb1d4294edf38e",
+    "role": "RC",
+    "balance": 40,
+    "warnings": 2,
+    "suspended": false
+  },
+  {
+    "username": "bob",
+    "name": "Bob Tanaka",
+    "passwordHash": "d8e4dc28f3b81ac8f5b836a4703f31b4:407c6703116138ec8504160232c89881c27c6e1f98bc8e1a76afcee6a0d1f0d8",
+    "role": "RC",
+    "balance": 0.5,
+    "warnings": 0,
+    "suspended": false
+  },
+  {
+    "username": "sam",
+    "name": "Sam Okafor",
+    "passwordHash": "80ff88e3bf9fbbe222a039101fce78dc:7cd3f218b912c7a8be02ebdcad1c55dafc0e479355082f301669dc8851d73498",
+    "role": "RC",
+    "balance": -2,
+    "warnings": 0,
+    "suspended": true
+  }
+]

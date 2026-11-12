@@ -1,0 +1,17 @@
+{
+  "alice": {
+    "books": {
+      "103": "want",
+      "164": "finished",
+      "2701": "reading"
+    },
+    "journal": [
+      {
+        "id": "j1",
+        "at": "2026-11-01T04:16:51.540Z",
+        "bookId": "2701",
+        "text": "Ahab's speech on the quarterdeck made me uneasy. Everyone cheers, but nobody asks whether the hunt is worth it."
+      }
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+# dependencies and build output
+node_modules/
+.svelte-kit/
+build/
+dist/
+.vite/
+
+# secrets / local config
+.env
+.env.*
+!.env.example
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+face/runs/
+face/dataset/
+
+# model weights
+*.pt
+*.onnx
+*.gguf
+
+# photos of our faces never go to GitHub
+data/faces/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

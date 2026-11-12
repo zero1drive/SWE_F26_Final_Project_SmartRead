@@ -1,0 +1,116 @@
+/* smartread: a small library in the evening. All colours and sizes live here. */
+:root {
+  --paper: #f5eedf;
+  --paper-deep: #ebdfc6;
+  --card: #fbf7ee;
+  --ink: #2b2119;
+  --ink-soft: #66574a;
+  --rule: #d6c5a3;
+  --accent: #6d1f24; /* oxblood */
+  --accent-soft: #8d3a3a;
+  --brass: #b08a3e;
+  --wood: #7a4f2e;
+  --wood-dark: #4b2f1b;
+  --ok: #2f5a3a;
+  --bad: #8a2323;
+
+  --serif: 'Literata', Georgia, 'Times New Roman', serif;
+  --hand: 'Gaegu', 'Comic Sans MS', cursive;
+
+  --gutter: clamp(16px, 4vw, 48px);
+  --measure: 68ch;
+  --radius: 3px;
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--paper); }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(255, 250, 235, 0.9), transparent 60%),
+    var(--paper);
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+}
+h1 { font-size: 2rem; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.1rem; }
+
+a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { color: var(--accent-soft); }
+
+p { margin: 0 0 1em; }
+
+.hand { font-family: var(--hand); font-weight: 300; letter-spacing: 0.06em; }
+.muted { color: var(--ink-soft); }
+.small { font-size: 0.875rem; }
+
+/* Buttons: square-ish, inked, no pills */
+button, .button {
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.45em 1.1em;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+button:hover, .button:hover { background: var(--paper-deep); }
+button.primary, .button.primary { background: var(--accent); border-color: var(--accent); color: #f8efe0; }
+button.primary:hover, .button.primary:hover { background: var(--accent-soft); }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+input, select, textarea {
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.4em 0.6em;
+  border: 1px solid var(--rule);
+  border-bottom: 1.5px solid var(--ink-soft);
+  border-radius: 0;
+  background: var(--card);
+  color: var(--ink);
+}
+input:focus, select:focus, textarea:focus, button:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 1px;
+}
+label { display: block; font-size: 0.9rem; color: var(--ink-soft); }
+
+/* Messages (SR-03) */
+.notice {
+  padding: 0.6em 0.9em;
+  border-left: 4px solid var(--ok);
+  background: #e8efe2;
+  margin: 0 0 1em;
+}
+.notice.bad { border-color: var(--bad); background: #f3e1dc; }
+
+/* A ruled page section, like a ledger */
+.ruled {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.25rem;
+  margin-top: 2rem;
+}
+
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+th, td { text-align: left; padding: 0.4em 0.6em; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-weight: 600; font-size: 0.85rem; color: var(--ink-soft); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
