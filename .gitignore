@@ -34,3 +34,6 @@ Thumbs.db
 
 # embedding cache, rebuilt automatically
 data/embeddings.json
+
+# login sessions change on every login
+data/sessions.json

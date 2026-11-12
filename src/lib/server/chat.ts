@@ -67,7 +67,13 @@ function roleContext(user: User | null): string {
     const f = financeReport();
     const lists = orderLists();
     lines.push(`The person chatting is ${user.name}, the store manager (super-user). They may see everything below.`);
-    lines.push(`Finance report: revenue from book sales ${usd(f.revenue)}, fines collected ${usd(f.fines)}, total income (sales plus fines) ${usd(f.income)}, customer deposits ${usd(f.deposits)}, money held in customer balances ${usd(f.customerBalances)}.`);
+    lines.push(
+      'Finance report:',
+      `- Revenue from book sales: ${usd(f.revenue)}`,
+      `- Fines collected: ${usd(f.fines)}`,
+      `- Customer deposits: ${usd(f.deposits)}`,
+      `- Money held in customer balances: ${usd(f.customerBalances)}`
+    );
     lines.push('Sales per book: ' + (f.sales.map((s) => `${s.title}: ${s.copies} sold, ${usd(s.revenue)}`).join('; ') || 'none'));
     lines.push('Customers: ' + read('users').filter((u) => u.role !== 'SU').map((u) =>
       `${u.name} (@${u.username}), ${u.role === 'VC' ? 'VIP' : 'member'}, balance ${usd(u.balance)}, ${u.warnings} warnings${u.suspended ? ', SUSPENDED' : ''}`).join('; '));
@@ -93,10 +99,12 @@ function roleContext(user: User | null): string {
 
 // ---------- step 2: permission check ----------
 
-const FINANCE = /\b(revenue|finances?|financial|profits?|income|earnings|turnover|sales (figures|report|numbers|total)|total sales|how much (money )?(has |did )?(the store|smartread|you) (made|make|earn|earned)|fines (collected|total)|total fines|order lists?|to-order|no-order)\b/i;
+const FINANCE = /\b(revenue|finances?|financial|profits?|income|earnings|turnover|best[- ]?sell(ing|ers?)|(sold|sells|selling) (the )?(most|best)|copies sold|sales (figures|report|numbers|total)|total sales|how much (money )?(has |did )?(the store|smartread|you) (made|make|earn|earned)|fines (collected|total)|total fines|order lists?|to-order|no-order)\b/i;
 const OTHER_USERS = /\b(other|all|every|each|list of|which) (users?|customers?|members?|accounts?|people)\b|\bwho (bought|owes|is suspended|has warnings)\b|\busers?'? balances?\b/i;
 
-const PERSONAL = /\b(my|mine|i|i've|me)\b.*\b(balance|bought|purchases?|warnings?|account|savings?|saved|spent|discount|vip|status|funds)\b/i;
+// "what's my balance?", "what have I bought?" -> answered from the user's own live data
+const PERSONAL =
+  /\b(my|mine)\b.*\b(balance|purchases?|warnings?|account|savings?|discount|status|funds|money|orders?)\b|\b(have i|did i|i've|i have)\b.*\b(bought|spent|saved|purchased|warnings?)\b|\bhow much (money )?(do i have|have i)\b|\bam i (a )?vip\b/i;
 
 export function isRestricted(question: string, user: User | null): boolean {
   if (FINANCE.test(question) || OTHER_USERS.test(question)) return true;
