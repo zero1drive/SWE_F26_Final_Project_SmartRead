@@ -24,13 +24,13 @@ The rest of the store works without this; the login page just says the face serv
 
 ```bash
 cd face
-python -m venv .venv
-.venv\Scripts\activate        # macOS/Linux: source .venv/bin/activate
+py -3.12 -m venv .venv          # macOS/Linux: python3 -m venv .venv
+.venv\Scripts\activate          # macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
 python -m uvicorn server:app --port 8001
 ```
 
-The first `pip install` downloads about 2 GB (PyTorch). The first enrolment also downloads the tiny `yolo11n-cls.pt` checkpoint. Face photos are saved in `data/faces/`, which is git-ignored so they never reach GitHub.
+If `python` opens the Microsoft Store, run `winget install Python.Python.3.12` and use the `py` launcher as above. The first `pip install` downloads PyTorch and takes a few minutes. Enrolment trains for 8 epochs, which took about 10 seconds on our test laptop (CPU only). The first enrolment also downloads the tiny `yolo11n-cls.pt` checkpoint. Face photos are saved in `data/faces/`, which is git-ignored so they never reach GitHub.
 
 ## Where things live
 
