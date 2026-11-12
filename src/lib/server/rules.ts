@@ -12,6 +12,8 @@ export const ORDER_LIST_MIN_RATINGS = 3; // a book needs MORE than this many rat
 export const NO_ORDER_BELOW = 2; // weighted average below this -> no-order list
 export const TO_ORDER_ABOVE = 4; // weighted average above this -> to-order list
 export const MAX_DEPOSIT = 10_000;
+export const RAG_MIN_SCORE = 0.6; // cosine similarity a store-file chunk needs to answer from the files
+export const PICTURE_MATCHES = 3; // how many books picture search shows
 
 type Role = 'SU' | 'RC' | 'VC';
 interface Account {

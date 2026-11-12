@@ -2,7 +2,7 @@
   {
     "username": "admin",
     "name": "Store Manager",
-    "passwordHash": "e7875601fce3547a010171a608262116:d13c9e19f9b7441d14a4d6c2f97ad9de5b97664f24eb1e0a86a731260f327526",
+    "passwordHash": "3dfe7754a7ce5428f26c5ce410a363a7:a434c0bc2612194366c0f646425082270eb0547d7fe71c7abf749e2ae0f365a0",
     "role": "SU",
     "balance": 0,
     "warnings": 0,
@@ -11,7 +11,7 @@
   {
     "username": "alice",
     "name": "Alice Moreno",
-    "passwordHash": "dd0e80f84701887f3cd0acce8a269860:f1750fe99467b36227fefd38540fbed968dd014b0680d84818548f93bb91a60a",
+    "passwordHash": "5518bbac3dc80fd2a2f16ad56befbe1c:08272230714e6437956322e11ee2e8f502a229a1dac34cc11b29591bfc486c38",
     "role": "RC",
     "balance": 66,
     "warnings": 0,
@@ -20,7 +20,7 @@
   {
     "username": "victor",
     "name": "Victor Chen",
-    "passwordHash": "4944743d2088059ee1a9983b95e206a0:4552e6ae33fa0f26cc6a76f2cc3944aae07bdde43825ad02b2a79c7f192377d7",
+    "passwordHash": "8d2117fa139f310860df39465d2eea8b:8a511a8d01f8d0456bb778616e2a2a10307f7423ba7fbe4213658b387a3ef289",
     "role": "VC",
     "balance": 94.2,
     "warnings": 0,
@@ -29,7 +29,7 @@
   {
     "username": "wendy",
     "name": "Wendy Park",
-    "passwordHash": "51336145f1e223707b0512b05dfd58ff:6ca14a3998e6e3ebda31b42f4ea7b0a0a57cb3e5c4e545dd953cc58f9bf175a8",
+    "passwordHash": "a1b722ef8fb9af859893fb3354455f8d:ac0bd01d9471628e449dfcb41f61798c36ed0f9b657d7184d353b6f1ec8bfc35",
     "role": "RC",
     "balance": 40,
     "warnings": 2,
@@ -38,7 +38,7 @@
   {
     "username": "bob",
     "name": "Bob Tanaka",
-    "passwordHash": "46726227a47a452d225dadaad78fdd5c:7b52e3274aeb775c162b4642d0c99ef5b65e2685812bfd409737877feb619c93",
+    "passwordHash": "40f3c8b90bd23539906ebc1785533312:35f2f1bc58c0bc9aa99e35219613aea14214301cbbddf25f0135b752074c7be5",
     "role": "RC",
     "balance": 0.5,
     "warnings": 0,
@@ -47,7 +47,7 @@
   {
     "username": "sam",
     "name": "Sam Okafor",
-    "passwordHash": "ea4cae73109ab7504669107c02a9f50a:e178e468eee800722f7948174ba6c0886e324ecafb2845e3164046967dfaaef3",
+    "passwordHash": "e0fc907eec6a735f3502babdc6dcefbe:aac251c882386e764e8f0682eda1b864ef0e9d5985382c759d34e89039a4c1c6",
     "role": "RC",
     "balance": -2,
     "warnings": 0,

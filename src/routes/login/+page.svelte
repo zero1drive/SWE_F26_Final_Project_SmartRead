@@ -25,7 +25,7 @@
           {#each data.demoAccounts as a}
             <form method="POST" action="?/demo" use:enhance>
               <input type="hidden" name="username" value={a.username} />
-              <button title="balance ${a.balance.toFixed(2)}, {a.warnings} warnings">
+              <button>
                 {a.username}
                 <span class="muted small">{a.suspended ? 'suspended' : roleName[a.role]}</span>
               </button>

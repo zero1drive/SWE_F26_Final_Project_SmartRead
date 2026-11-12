@@ -6,6 +6,7 @@
   import '@fontsource/gaegu/400.css';
   import '../app.css';
   import Logo from '$lib/components/Logo.svelte';
+  import ChatBox from '$lib/components/ChatBox.svelte';
   import { page } from '$app/state';
 
   let { data, children } = $props();
@@ -43,6 +44,9 @@
 <main>
   {@render children()}
 </main>
+
+<!-- a fresh conversation for each person who logs in -->
+{#key data.user?.username}<ChatBox />{/key}
 
 <footer>
   <p class="small muted">
