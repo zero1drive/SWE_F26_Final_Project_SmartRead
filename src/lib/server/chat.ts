@@ -41,7 +41,12 @@ function storeChunks(): { file: string; text: string }[] {
   if (!fs.existsSync(STORE_DIR)) return [];
   const chunks: { file: string; text: string }[] = [];
   for (const file of fs.readdirSync(STORE_DIR).filter((f) => f.endsWith('.md')).sort()) {
-    const raw = fs.readFileSync(path.join(STORE_DIR, file), 'utf8');
+    let raw: string;
+    try {
+      raw = fs.readFileSync(path.join(STORE_DIR, file), 'utf8');
+    } catch {
+      continue; // unreadable file: skip it rather than break the chat
+    }
     const title = raw.match(/^#\s+(.+)$/m)?.[1] ?? file;
     for (const para of raw.split(/\r?\n\s*\r?\n/)) {
       const text = para.trim();
@@ -144,8 +149,10 @@ export async function answer(question: string, user: User | null): Promise<Reply
     // Finance/customer questions from the SU, and "my balance"-type questions, are about
     // live data in the role context, not the store files, so they skip RAG.
     let best: number | undefined;
+    let noLocalInfo = false; // a store question, but no store files could be read
     if (!restricted && !(user && PERSONAL.test(q))) {
       const chunks = storeChunks();
+      noLocalInfo = chunks.length === 0;
       if (chunks.length) {
         const vectors = await cachedVectors(chunks.map((c, i) => ({ key: `store:${c.file}:${i}`, text: c.text })));
         const [qv] = await embed([q], 'search_query');
@@ -180,7 +187,8 @@ export async function answer(question: string, user: User | null): Promise<Reply
       },
       { role: 'user', content: q }
     ]);
-    return { answer: text, source: 'llm', score: best };
+    const note = noLocalInfo ? '\n\n(No local store information is available right now, so this answer is from the LLM only.)' : '';
+    return { answer: text + note, source: 'llm', score: best };
   } catch (e) {
     if (e instanceof AiDown) return { answer: e.message, source: 'error' };
     throw e;
