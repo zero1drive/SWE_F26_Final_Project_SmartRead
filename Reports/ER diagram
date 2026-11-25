@@ -92,3 +92,4 @@ erDiagram
     USER ||--o{ SESSION : has
     USER ||--o{ FACE_SAMPLE : enrolls
     STORE_INFO_FILE ||--o{ EMBEDDING_CACHE : "split into"
+```
